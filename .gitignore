@@ -1,3 +1,15 @@
+# word files:
+documents/word files/*
+# data:
+artifacts/data
+# model:
+artifacts/model
+# tokenizer:
+artifacts/tokenizer
+# secrect.yaml:
+config/secrect.yaml
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
