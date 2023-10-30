@@ -2,7 +2,7 @@ import os
 import shutil
 import json
 import yaml
-import joblib
+import torch
 from pathlib import Path
 from box.exceptions import BoxValueError
 from box import ConfigBox
@@ -111,7 +111,7 @@ def create_dir(dirs: list):
         raise e
 
 
-@ensure_annotations
+# @ensure_annotations
 def save_json_file(file_path: Path, report: dict):
     """
         Saves the report dictionary to a file in JSON format.
@@ -133,7 +133,7 @@ def save_json_file(file_path: Path, report: dict):
         raise e
 
 
-@ensure_annotations
+# @ensure_annotations
 def load_json_file(file_path:Path) -> ConfigBox:
     """
         Load a report from a file and return a ConfigBox object.
@@ -161,73 +161,47 @@ def load_json_file(file_path:Path) -> ConfigBox:
 
 
 @ensure_annotations
-def save_binary_file(data: Any, file_path: Path):
+def save_torch_data(torch_data, file_path):
     """
-        Save binary file.
-
-        This function saves the provided data as a binary file at the specified file path using the joblib.dump method.
-        If an exception occurs during the saving process, the exception is re-raised.
-
-        :param data: The data to be saved as a binary file.
-        :param file_path: The path where the binary file will be saved.
-        :return: None
-    """
-    try:
-        joblib.dump(value=data, filename=file_path)
-
-    except Exception as ex:
-        raise ex
-
-
-@ensure_annotations
-def load_binary_file(file_path: Path) -> Any:
-    """
-        Load binary file from the specified file path.
+        Save the torch data object to the specified file path.
 
         Args:
-            file_path (Path): The path to the binary file to be loaded.
-
-        Returns:
-            Any: The loaded data from the binary file.
+            torch_data: The torch data object to be saved.
+            file_path: The path of the file where the torch data should be saved.
 
         Raises:
-            Exception: If an error occurs during the loading process.
-    """
-    try:
-        data = joblib.load(file_path)
-        return data
-
-    except Exception as ex:
-        raise ex
-
-
-@ensure_annotations
-def get_size(file_path: Path) -> str:
-    """
-        Returns the size of a file in kilobytes as a string.
-
-        Args:
-            file_path (Path): The path to the file for which the size needs to be determined.
-
-        Returns:
-            str: The size of the file in kilobytes as a string with the "~" symbol and "KB" suffix.
-
-        Raises:
-            Exception: If an error occurs while getting the file size.
+            Exception: If an error occurs during the saving process.
 
         Example Usage:
-            file_path = Path("path/to/file.txt")
-            size = get_size(file_path)
-            print(size)
+            save_torch_data(torch_data, "data.pt")
     """
     try:
-        size_in_kb = round(os.path.getsize(file_path)/1024)
-        return f"{size_in_kb} KB"
+        torch.save(torch_data, file_path) # save the data
 
     except Exception as ex:
         raise ex
 
 
+@ensure_annotations
+def load_torch_data(torch_data_file_path):
+    """
+        Loads data from a file using the `torch.load` function and returns the loaded data.
+
+        Args:
+            torch_data_file_path (str): The path to the file containing the torch data.
+
+        Returns:
+            The loaded data from the torch data file.
+
+        Raises:
+            Exception: If an exception occurs during the loading process.
+    """
+    try:
+        data = torch.load(torch_data_file_path) # load the data
+        return data # return the data
+
+    except Exception as ex:
+        raise ex
 
 
 
