@@ -1,0 +1,29 @@
+
+# logs:
+logs:
+  logs_dir: logs
+  log_file: logs/running_logs.log
+
+
+# artifacts:
+artifacts: 
+  artifacts_dir: artifacts
+
+  # dataset
+  data:
+    data_dir: artifacts/data
+    file_name: artifacts/data/data.csv
+
+  # model:
+  model:
+    model_dir: artifacts/model
+
+  # tokenizer:
+  tokenizer:
+    tokenizer_dir: artifacts/tokenizer
+  
+  # performance report:
+  report:
+    report_dir: artifacts/report
+    file_name: artifacts/report/performace_report.json
+  
