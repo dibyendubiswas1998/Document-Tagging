@@ -1,0 +1,10 @@
+stages:
+  # Satge 01: Data Ingestion 
+  data_ingestion:
+    cmd: python src/document_tagging/pipeline/data_ingestion.py
+    deps:
+      - src/document_tagging/pipeline/data_ingestion.py
+      - config/secrect.yaml
+      - config/config.yaml
+    outs:
+      - artifacts/data/data.csv
