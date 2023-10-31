@@ -4,7 +4,7 @@ from src.document_tagging.utils.common_utils import log
 
 
 
-STAGE_NAME = "Data Ingestion Config"
+STAGE_NAME = "Data Ingestion"
 
 
 class DataIngestionTrainingPipeline:
