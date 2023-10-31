@@ -8,19 +8,38 @@ STAGE_NAME = "Data Ingestion Config"
 
 
 class DataIngestionTrainingPipeline:
+    """
+        The DataIngestionTrainingPipeline class is responsible for executing the data ingestion process. It initializes the 
+        ConfigManager class to retrieve the data ingestion configuration, creates an instance of the DataIngestion class 
+        with the retrieved configuration, and calls the load_and_save_data method to load data from two datasets stored in 
+        an S3 bucket, concatenate them together, and save the resulting dataframe to a local directory.
+    """
     def __init__(self):
         pass
 
     def main(self):
+        """
+            Executes the data ingestion process.
+
+            This method initializes the ConfigManager class to retrieve the data ingestion configuration,
+            creates an instance of the DataIngestion class with the retrieved configuration,
+            and calls the load_and_save_data method to load data from two datasets stored in an S3 bucket,
+            concatenate them together, and save the resulting dataframe to a local directory.
+
+            Example Usage:
+            pipeline = DataIngestionTrainingPipeline()  # Initialize the DataIngestionTrainingPipeline object
+            pipeline.main()  # Execute the data ingestion process
+        """
+
         try:
             config_manager = ConfigManager() # ConfigManager class
             data_ingestion_config = config_manager.get_data_ingestion_config() # get data_ingestion_config
-            
+
             data_ingestion = DataIngestion(config=data_ingestion_config) # data_ingestion object
             data_ingestion.load_and_save_data() # load and save data
-            
+
         except Exception as ex:
-            raise ex 
+            raise ex
         
 
 

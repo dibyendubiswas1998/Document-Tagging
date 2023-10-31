@@ -6,11 +6,40 @@ from src.document_tagging.entity.config_entity import DataIngestionConfig
 
 
 class DataIngestion:
+    """
+        The DataIngestion class is responsible for loading data from two datasets stored in an S3 bucket, concatenating them
+        together, and saving the resulting dataframe to a local directory. It also logs various messages throughout the process.
+    """
     def __init__(self, config: DataIngestionConfig) -> None:
         self.config = config
     
 
     def load_and_save_data(self):
+        """
+            Load data from two datasets stored in an S3 bucket, concatenate them together, and save the resulting dataframe to a local directory.
+
+            Inputs:
+            - self (implicit): The instance of the DataIngestion class.
+
+            Flow:
+                1. Retrieve the log file path from the config object.
+                2. Create an S3 client using the AWS credentials and region specified in the config object.
+                3. Load the first dataset from the S3 bucket using the s3_client and s3_dataset_1 parameters from the config object.
+                4. Read the CSV file into a pandas dataframe (df1).
+                5. Extract a specified number of records from df1 based on the num_records_extract parameter from the config object.
+                6. Load the second dataset from the S3 bucket using the s3_client and s3_dataset_2 parameters from the config object.
+                7. Read the CSV file into another pandas dataframe (df2).
+                8. Extract a specified number of records from df2 based on the num_records_extract parameter from the config object.
+                9. Concatenate df1 and df2 together to create a single dataframe (df).
+                10. Clean the local data directory specified in the config object if it already exists.
+                11. Create the local data directory specified in the config object.
+                12. Save the df dataframe to a CSV file in the local data directory using the local_data_file_name parameter from the config object.
+                13. Log various messages throughout the process using the log function.
+                14. If any exception occurs, log the error message and raise the exception.
+
+            Outputs:
+                Save the data to the specified directory
+        """
         try:
             log_file = self.config.log_file # mention log file
 
@@ -36,13 +65,13 @@ class DataIngestion:
             df = pd.concat([df1, df2]) # concat the two datasets together
             log(file_object=log_file, log_message=f"concat the two dataframe together") # logs 
 
-            clean_prev_dirs_if_exis(dir_path=self.config.local_data_file_path) # clean the directory if already exists
-            create_dir(dirs=[self.config.local_data_file_path]) # create the directory for save the data
-            log(file_object=log_file, log_message=f"clean and then create the directory {self.config.local_data_file_path}") # logs 
+            clean_prev_dirs_if_exis(dir_path=self.config.local_data_directory) # clean the directory if already exists
+            create_dir(dirs=[self.config.local_data_directory]) # create the directory for save the data
+            log(file_object=log_file, log_message=f"clean and then create the directory {self.config.local_data_directory}") # logs 
 
             df.to_csv(self.config.local_data_file_name, index=None) # save the data to the local data directory
-            log(file_object=log_file, log_message=f"save the data to local directory, {self.config.local_data_file_path}") # logs 
-            
+            log(file_object=log_file, log_message=f"save the data to local directory, {self.config.local_data_directory}") # logs 
+        
 
         except Exception as ex:
             log_file = self.config.log_file # mention log file
