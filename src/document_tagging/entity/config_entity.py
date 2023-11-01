@@ -60,3 +60,39 @@ class DataIngestionConfig:
     local_data_directory: Path
     local_data_file_name: Path
     log_file: Path
+
+
+
+@dataclass(frozen=True)
+class DataPreprocessingConfig:
+    """
+      A data class that represents the configuration for data preprocessing.
+
+      Attributes:
+          data_file_path (Path): The path to the data file.
+          train_torch_file_name (Path): The path to the training data file in Torch format.
+          valid_torch_file_name (Path): The path to the validation data file in Torch format.
+          test_torch_file_name (Path): The path to the test data file in Torch format.
+          json_file (Path): The path to the JSON file.
+          columns (list): The list of column names in the data file.
+          X_feature_name (str): The name of the input feature.
+          Y_feature_name (str): The name of the target feature.
+          model_name (str): The name of the model.
+          tokenizer_path (Path): The path to the tokenizer.
+          split_ratio (float): The ratio for splitting the data into training and validation sets.
+          random_state (int): The random state for reproducibility.
+          log_file (Path): The path to the log file.
+    """
+    data_file_path: Path
+    train_torch_file_name: Path
+    valid_torch_file_name: Path
+    test_torch_file_name: Path
+    json_file: Path
+    columns: list
+    X_feature_name: str
+    Y_feature_name: str
+    model_name: str
+    tokenizer_path: Path
+    split_ratio: float
+    random_state: int
+    log_file: Path

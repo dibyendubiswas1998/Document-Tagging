@@ -5,18 +5,46 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 52b65b367e18808f1538277e9b6ac710
-      size: 456
+      md5: 71cc5878cec20fc7cd1dcf0fdc3d2041
+      size: 805
     - path: config/secrect.yaml
       hash: md5
-      md5: fe34107c65d4fbc0dfbe7ac09807e128
-      size: 570
+      md5: f2c4f85e5dcb41c10ac4dab72c1f89df
+      size: 569
     - path: src/document_tagging/pipeline/data_ingestion.py
       hash: md5
-      md5: daae1cc902dc0f7f2ec264f0259af62e
-      size: 1300
+      md5: 8c4d6961e5c72a117b158b0e41695ece
+      size: 2438
     outs:
     - path: artifacts/data/data.csv
       hash: md5
-      md5: 9c0ac98dcf46d535309f53fd3b38d279
-      size: 2442644
+      md5: 08df26e3b3bf1c6d99a6ae8e58e05c8d
+      size: 121765
+  data_preprocessing:
+    cmd: python src/document_tagging/pipeline/data_preprocessing.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 71cc5878cec20fc7cd1dcf0fdc3d2041
+      size: 805
+    - path: src/document_tagging/pipeline/data_preprocessing.py
+      hash: md5
+      md5: e50ebc023dbed10b56be0f953598da01
+      size: 2230
+    outs:
+    - path: artifacts/data/labels.json
+      hash: md5
+      md5: 1e4141ad9f4be2f9a691fd32a3b10f90
+      size: 23
+    - path: artifacts/data/test.pth
+      hash: md5
+      md5: 5284a4cae3214ddacea4d92347c11044
+      size: 2346
+    - path: artifacts/data/train.pth
+      hash: md5
+      md5: 8e63cdaaac3847121e289f02efcfd1b3
+      size: 5925
+    - path: artifacts/data/valid.pth
+      hash: md5
+      md5: 6d4765ebd6d4ccc850b50363cb1909d1
+      size: 1670

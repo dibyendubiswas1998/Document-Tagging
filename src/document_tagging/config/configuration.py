@@ -92,6 +92,36 @@ class ConfigManager:
             raise ex
 
 
+    def get_data_preprocessing_config(self) -> DataPreprocessingConfig:
+        """
+            Retrieves the data preprocessing configuration.
+
+            Returns:
+                DataPreprocessingConfig: An instance of the DataPreprocessingConfig class containing the data preprocessing configuration values.
+
+            Raises:
+                Exception: If there is an error retrieving the data preprocessing configuration.
+        """
+        try:
+            data_preprocessing_config = DataPreprocessingConfig(
+                data_file_path=self.config.artifacts.data.raw_data_file_name,
+                train_torch_file_name=self.config.artifacts.data.train_torch_file_name,
+                valid_torch_file_name=self.config.artifacts.data.valid_torch_file_name,
+                test_torch_file_name=self.config.artifacts.data.test_torch_file_name,
+                json_file=self.config.artifacts.data.num_of_labels_file_name,
+                columns=self.secrect.data_info.columns,
+                X_feature_name=self.secrect.data_info.X_feature,
+                Y_feature_name=self.secrect.data_info.Y_feature,
+                model_name=self.config.model_info.model_name,
+                tokenizer_path=self.config.artifacts.tokenizer.tokenizer_dir,
+                split_ratio=self.config.split_ratio.test_size,
+                random_state=self.config.split_ratio.random_dtate,
+                log_file=self.config.logs.log_file
+            )
+            return data_preprocessing_config
+
+        except Exception as ex:
+            raise ex
 
 
 
