@@ -5,12 +5,12 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 688d5071ed0fec12972f64dcb70549ce
-      size: 852
+      md5: 6aee7cabf2472115d17d4be1c09a47e2
+      size: 944
     - path: config/secrect.yaml
       hash: md5
-      md5: fe34107c65d4fbc0dfbe7ac09807e128
-      size: 570
+      md5: 03d1c38c21d782a09e961e32cea17551
+      size: 568
     - path: src/document_tagging/pipeline/data_ingestion.py
       hash: md5
       md5: 8c4d6961e5c72a117b158b0e41695ece
@@ -18,15 +18,15 @@ stages:
     outs:
     - path: artifacts/data/data.csv
       hash: md5
-      md5: 9c0ac98dcf46d535309f53fd3b38d279
-      size: 2442644
+      md5: 61a75903571143235bb1eb91acc39ad0
+      size: 24274
   data_preprocessing:
     cmd: python src/document_tagging/pipeline/data_preprocessing.py
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 688d5071ed0fec12972f64dcb70549ce
-      size: 852
+      md5: 6aee7cabf2472115d17d4be1c09a47e2
+      size: 944
     - path: src/document_tagging/pipeline/data_preprocessing.py
       hash: md5
       md5: e50ebc023dbed10b56be0f953598da01
@@ -34,17 +34,58 @@ stages:
     outs:
     - path: artifacts/data/labels.json
       hash: md5
-      md5: 46b9bd2be6a0a32c6397df38c792a560
-      size: 25
+      md5: b56049f94e4ad628cf5f91076e1f8996
+      size: 24
+    - path: artifacts/data/tag2id.json
+      hash: md5
+      md5: 76e042641c387815f3f944d708553e69
+      size: 6998
     - path: artifacts/data/test.pth
       hash: md5
-      md5: 427fc0521606e498b72cfebd4fa8aa84
-      size: 8150259
+      md5: 8f2b6e3b042916311f50591c42c1f8d1
+      size: 69794
     - path: artifacts/data/train.pth
       hash: md5
-      md5: 1d42f4634cfb6c3f11b276a032d741e6
-      size: 38197350
+      md5: e3c81c7247c8295430485e984b7bb4c2
+      size: 326026
     - path: artifacts/data/valid.pth
       hash: md5
-      md5: d0b36b9361e9bacd84d257c53941e53c
-      size: 8168224
+      md5: 15c12f64a121b360996346ad6698410a
+      size: 69978
+  model_training:
+    cmd: python src/document_tagging/pipeline/model_training.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 6aee7cabf2472115d17d4be1c09a47e2
+      size: 944
+    - path: src/document_tagging/pipeline/model_training.py
+      hash: md5
+      md5: 2870b0c9291bafa57f39c8ec08caf323
+      size: 1767
+    params:
+      params.yaml:
+        TrainingArguments.eval_steps: 500
+        TrainingArguments.evaluation_strategy: epoch
+        TrainingArguments.gradient_accumulation_steps: 16
+        TrainingArguments.learning_rate: 2e-05
+        TrainingArguments.logging_steps: 10
+        TrainingArguments.num_train_epochs: 7
+        TrainingArguments.per_device_eval_batch_size: 8
+        TrainingArguments.per_device_train_batch_size: 8
+        TrainingArguments.save_steps: 1000000
+        TrainingArguments.save_strategy: no
+        TrainingArguments.save_total_limit: 0
+        TrainingArguments.warmup_steps: 500
+        TrainingArguments.weight_decay: 0.01
+    outs:
+    - path: artifacts/model/doc_tag_model
+      hash: md5
+      md5: 24a288a5ec2c83ddaf0d03a2e40a26cd.dir
+      size: 436675738
+      nfiles: 2
+    - path: artifacts/model/log
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0

@@ -22,6 +22,8 @@ artifacts:
   # model:
   model:
     model_dir: artifacts/model
+    model_log_dir: artifacts/model/log
+    doc_tag_model_dir: artifacts/model/doc_tag_model
 
   # tokenizer:
   tokenizer:

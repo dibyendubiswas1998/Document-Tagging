@@ -125,6 +125,46 @@ class ConfigManager:
             raise ex
 
 
+    def get_model_training_config(self) -> ModelTrainingConfig:
+        """
+            Retrieves the model training configuration.
+
+            Returns:
+                ModelTrainingConfig: An instance of the ModelTrainingConfig class containing the model training configuration values.
+        
+            Raises:
+                Exception: If there is an error retrieving the model training configuration.
+        """
+        try:
+            model_training_config = ModelTrainingConfig(
+                model_name=self.config.model_info.model_name,
+                model_log_dir=self.config.artifacts.model.model_log_dir,
+                doc_tag_model_dir=self.config.artifacts.model.doc_tag_model_dir,
+                tokenizer_file_path=self.config.artifacts.tokenizer.tokenizer_dir,
+                train_torch_file_name=self.config.artifacts.data.train_torch_file_name,
+                valid_torch_file_name=self.config.artifacts.data.valid_torch_file_name,
+                test_torch_file_name=self.config.artifacts.data.test_torch_file_name,
+                json_file=self.config.artifacts.data.num_of_labels_file_name,
+                tag2id_file=self.config.artifacts.data.tag2_file_name,
+                log_file=self.config.logs.log_file,
+                num_train_epochs=self.params.TrainingArguments.num_train_epochs,
+                warmup_steps=self.params.TrainingArguments.warmup_steps,
+                per_device_train_batch_size=self.params.TrainingArguments.per_device_train_batch_size,
+                per_device_eval_batch_size=self.params.TrainingArguments.per_device_eval_batch_size,
+                learning_rate=self.params.TrainingArguments.learning_rate,
+                weight_decay=self.params.TrainingArguments.weight_decay,
+                logging_steps=self.params.TrainingArguments.logging_steps,
+                evaluation_strategy=self.params.TrainingArguments.evaluation_strategy,
+                eval_steps=self.params.TrainingArguments.eval_steps,
+                save_steps=self.params.TrainingArguments.save_steps,
+                gradient_accumulation_steps=self.params.TrainingArguments.gradient_accumulation_steps,
+                save_total_limit=self.params.TrainingArguments.save_total_limit,
+                save_strategy=self.params.TrainingArguments.save_strategy
+            )
+            return model_training_config
+
+        except Exception as ex:
+            raise ex
 
 if __name__ == "__main__":
     pass

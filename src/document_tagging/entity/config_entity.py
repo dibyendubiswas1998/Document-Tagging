@@ -98,3 +98,57 @@ class DataPreprocessingConfig:
     split_ratio: float
     random_state: int
     log_file: Path
+
+
+@dataclass(frozen=True)
+class ModelTrainingConfig:
+    """
+        Represents the configuration for model training.
+
+        Fields:
+            - model_name: The name of the model to be trained (string)
+            - model_dir: The file path to save the model
+            - tokenizer_file_path: The file path to the tokenizer used for tokenizing the input data (Path object)
+            - train_torch_file_name: The file name of the training data in torch format (Path object)
+            - valid_torch_file_name: The file name of the validation data in torch format (Path object)
+            - test_torch_file_name: The file name of the test data in torch format (Path object)
+            - json_file: The file path to the JSON configuration file (Path object)
+            - tag2id_file: The file path to the tag-to-id mapping file (Path object)
+            - log_file: The file path to the log file for training (Path object)
+            - num_train_epochs: The number of training epochs (integer)
+            - warmup_steps: The number of warmup steps for learning rate scheduling (integer)
+            - per_device_train_batch_size: The batch size for training per device (integer)
+            - per_device_eval_batch_size: The batch size for evaluation per device (integer)
+            - learning_rate: The learning rate for optimization (float)
+            - weight_decay: The weight decay for optimization (float)
+            - logging_steps: The number of steps between logging (integer)
+            - evaluation_strategy: The strategy for evaluation (string)
+            - eval_steps: The number of steps between evaluation (integer)
+            - save_steps: The number of steps between model saving (integer)
+            - gradient_accumulation_steps: The number of steps for gradient accumulation (integer)
+            - save_total_limit: The maximum number of saved models (integer)
+            - save_strategy: The strategy for model saving (string)
+    """
+    model_name: str
+    model_log_dir: Path
+    doc_tag_model_dir: Path
+    tokenizer_file_path: Path
+    train_torch_file_name: Path
+    valid_torch_file_name: Path
+    test_torch_file_name: Path
+    json_file: Path
+    tag2id_file: Path
+    log_file: Path
+    num_train_epochs: int
+    warmup_steps: int
+    per_device_train_batch_size: int
+    per_device_eval_batch_size: int
+    learning_rate: str
+    weight_decay: float
+    logging_steps: int
+    evaluation_strategy: str
+    eval_steps: int
+    save_steps: int
+    gradient_accumulation_steps: int
+    save_total_limit: int
+    save_strategy: str

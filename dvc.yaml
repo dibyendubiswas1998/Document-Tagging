@@ -20,3 +20,28 @@ stages:
       - artifacts/data/valid.pth
       - artifacts/data/test.pth
       - artifacts/data/labels.json
+      - artifacts/data/tag2id.json
+
+  # Stage 03: Model Training
+  model_training:
+    cmd: python src/document_tagging/pipeline/model_training.py
+    deps:
+      - src/document_tagging/pipeline/model_training.py
+      - config/config.yaml
+    params:
+      - TrainingArguments.num_train_epochs
+      - TrainingArguments.warmup_steps
+      - TrainingArguments.per_device_train_batch_size
+      - TrainingArguments.per_device_eval_batch_size
+      - TrainingArguments.learning_rate
+      - TrainingArguments.weight_decay
+      - TrainingArguments.logging_steps
+      - TrainingArguments.evaluation_strategy
+      - TrainingArguments.eval_steps
+      - TrainingArguments.save_steps
+      - TrainingArguments.gradient_accumulation_steps
+      - TrainingArguments.save_total_limit
+      - TrainingArguments.save_strategy
+    outs:
+      - artifacts/model/log
+      - artifacts/model/doc_tag_model

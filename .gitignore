@@ -8,6 +8,8 @@ artifacts/model
 artifacts/tokenizer
 # secrect.yaml:
 config/secrect.yaml
+# mlruns:
+mlruns
 
 
 # Byte-compiled / optimized / DLL files
