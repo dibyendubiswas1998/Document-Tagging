@@ -1,5 +1,6 @@
 from src.document_tagging.utils.common_utils import log, save_torch_data, save_json_file 
 from src.document_tagging.entity.config_entity import DataPreprocessingConfig
+from src.document_tagging.components.data_loader import CustomDataset
 import pandas as pd
 import string
 import re
@@ -409,11 +410,19 @@ class DataPreprocessing:
             Y = self.text_preprocessing(Y) # apply text-preprocessing on Y
             tag2id, num_labels = self.tag2_id(Y) # get the unique id for each tag
             input_ids, attention_mask, tag_data_tensor, length_of_tag_data_tensor = self.word_representation(X, Y, tag2id) # apply word to vector
-            train, vaild, test = self.split_data(input_ids, attention_mask, tag_data_tensor, length_of_tag_data_tensor) # get the train, test and validation dataset
+            train, valid, test = self.split_data(input_ids, attention_mask, tag_data_tensor, length_of_tag_data_tensor) # get the train, test and validation dataset
 
-            save_torch_data(torch_data=train, file_path=self.config.train_torch_file_name) # save train dataset
-            save_torch_data(torch_data=vaild, file_path=self.config.valid_torch_file_name) # save train dataset
-            save_torch_data(torch_data=test, file_path=self.config.test_torch_file_name) # save train dataset
+            X_train, attn_mask_X_train, Y_train = train # separate X_train, attn_mask_X_train, Y_train
+            X_valid, attn_mask_X_valid, Y_valid = valid # separate X_valid, attn_mask_X_valid, Y_valid
+            X_test, attn_mask_X_test, Y_test = test # separate X_test, attn_mask_X_test, Y_test
+
+            train_dataset = CustomDataset(X_train, attn_mask_X_train, Y_train) # create training_dataset
+            valid_dataset = CustomDataset(X_valid, attn_mask_X_valid, Y_valid) # create valid_dataset
+            test_dataset = CustomDataset(X_test, attn_mask_X_test, Y_test) # create test_dataset
+
+            save_torch_data(torch_data=train_dataset, file_path=self.config.train_torch_file_name) # save train dataset
+            save_torch_data(torch_data=valid_dataset, file_path=self.config.valid_torch_file_name) # save train dataset
+            save_torch_data(torch_data=test_dataset, file_path=self.config.test_torch_file_name) # save train dataset
 
         except Exception as ex:
             log_file = self.config.log_file # mention log file
