@@ -109,6 +109,7 @@ class ConfigManager:
                 valid_torch_file_name=self.config.artifacts.data.valid_torch_file_name,
                 test_torch_file_name=self.config.artifacts.data.test_torch_file_name,
                 json_file=self.config.artifacts.data.num_of_labels_file_name,
+                tag2id=self.config.artifacts.data.tag2_file_name,
                 columns=self.secrect.data_info.columns,
                 X_feature_name=self.secrect.data_info.X_feature,
                 Y_feature_name=self.secrect.data_info.Y_feature,

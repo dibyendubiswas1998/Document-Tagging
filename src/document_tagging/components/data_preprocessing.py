@@ -201,7 +201,8 @@ class DataPreprocessing:
 
             unique_tags = set(tag for tag_list in tags for tag in tag_list)  # get all the unique tags
             tag2id = {tag: idx for idx, tag in enumerate(unique_tags)}  # get the id based on specific tags as a dictionary
-            log(file_object=log_file, log_message=f"get unique id for each tag") # logs
+            save_json_file(file_path=self.config.tag2id, report=tag2id) # save the tag2id into the file
+            log(file_object=log_file, log_message=f"get unique id for each tag and save into {self.config.tag2id}") # logs
 
             num_labels = len(tag2id)  # get the number of labels
             save_json_file(file_path=self.config.json_file, report={"no_labels": num_labels}) # save the number of labels into json file

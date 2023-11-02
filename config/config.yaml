@@ -17,6 +17,7 @@ artifacts:
     valid_torch_file_name: artifacts/data/valid.pth
     test_torch_file_name: artifacts/data/test.pth
     num_of_labels_file_name: artifacts/data/labels.json
+    tag2_file_name: artifacts/data/tag2id.json
 
   # model:
   model:

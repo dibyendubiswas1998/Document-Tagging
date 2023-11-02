@@ -74,6 +74,7 @@ class DataPreprocessingConfig:
           valid_torch_file_name (Path): The path to the validation data file in Torch format.
           test_torch_file_name (Path): The path to the test data file in Torch format.
           json_file (Path): The path to the JSON file.
+          tag2id (Path): The path to the JSON file.
           columns (list): The list of column names in the data file.
           X_feature_name (str): The name of the input feature.
           Y_feature_name (str): The name of the target feature.
@@ -88,6 +89,7 @@ class DataPreprocessingConfig:
     valid_torch_file_name: Path
     test_torch_file_name: Path
     json_file: Path
+    tag2id: Path
     columns: list
     X_feature_name: str
     Y_feature_name: str
