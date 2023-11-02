@@ -27,6 +27,7 @@ list_of_files = [
     f"src/{template_name}/components/__init__.py", # component package
     f"src/{template_name}/components/data_ingestion.py", # data-ingestion
     f"src/{template_name}/components/data_preprocessing.py", # data-preprocessing
+    f"src/{template_name}/components/data_loader.py", # data-loader
     f"src/{template_name}/components/model_training.py", # model-training
     f"src/{template_name}/components/model_evaluation_mlflow.py", # model-evaluation-mlflow
 
