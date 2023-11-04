@@ -34,24 +34,24 @@ stages:
     outs:
     - path: artifacts/data/labels.json
       hash: md5
-      md5: b56049f94e4ad628cf5f91076e1f8996
-      size: 24
+      md5: 46b9bd2be6a0a32c6397df38c792a560
+      size: 25
     - path: artifacts/data/tag2id.json
       hash: md5
-      md5: 76e042641c387815f3f944d708553e69
-      size: 6998
+      md5: b8fe29aec76a3c08e44c957d0cc39d3e
+      size: 182065
     - path: artifacts/data/test.pth
       hash: md5
-      md5: 8f2b6e3b042916311f50591c42c1f8d1
-      size: 69794
+      md5: 52c999ee4b3f76cf7a26b4d751d7a199
+      size: 8150387
     - path: artifacts/data/train.pth
       hash: md5
-      md5: e3c81c7247c8295430485e984b7bb4c2
-      size: 326026
+      md5: 4aa247137e854d0adff5b56469f8d106
+      size: 38197478
     - path: artifacts/data/valid.pth
       hash: md5
-      md5: 15c12f64a121b360996346ad6698410a
-      size: 69978
+      md5: 9a396af1946e2b762d5cd8e56644615c
+      size: 8168352
   model_training:
     cmd: python src/document_tagging/pipeline/model_training.py
     deps:
@@ -81,14 +81,14 @@ stages:
     outs:
     - path: artifacts/model/doc_tag_model
       hash: md5
-      md5: 24a288a5ec2c83ddaf0d03a2e40a26cd.dir
-      size: 436675738
+      md5: 3c5a3d21b1311b230bd291352c452548.dir
+      size: 462186526
       nfiles: 2
     - path: artifacts/model/log
       hash: md5
-      md5: d751713988987e9331980363e24189ce.dir
-      size: 0
-      nfiles: 0
+      md5: 949786094c0167ee644bcfd54f575ff9.dir
+      size: 438048
+      nfiles: 1
   model_evaluation:
     cmd: python src/document_tagging/pipeline/model_evaluation.py
     deps:
@@ -118,5 +118,5 @@ stages:
     outs:
     - path: artifacts/report/performace_report.json
       hash: md5
-      md5: 4f7be50b30d92cea3b553a0353f50959
-      size: 1119
+      md5: e0d35c12e77564833c455d8a7418b433
+      size: 374
