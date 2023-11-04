@@ -10,6 +10,9 @@ artifacts/tokenizer
 config/secrect.yaml
 # mlruns:
 mlruns
+# mlflow:
+script.py
+
 
 
 # Byte-compiled / optimized / DLL files

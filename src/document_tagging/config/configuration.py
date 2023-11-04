@@ -166,5 +166,34 @@ class ConfigManager:
         except Exception as ex:
             raise ex
 
+
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+        """
+            Retrieves the model evaluation configuration.
+
+            Returns:
+                ModelEvaluationConfig: An instance of the ModelEvaluationConfig class containing the model evaluation configuration values.
+        """
+        try:
+            model_evaluation_config = ModelEvaluationConfig(
+                train_tensor_data_path=self.config.artifacts.data.train_torch_file_name,
+                test_tensor_data_path=self.config.artifacts.data.test_torch_file_name,
+                valid_tensor_data_path=self.config.artifacts.data.valid_torch_file_name,
+                model_path=self.config.artifacts.model.doc_tag_model_dir,
+                tokenizer_path=self.config.artifacts.tokenizer.tokenizer_dir,
+                metric_file_path=self.config.artifacts.report.file_name,
+                model_log_dir=self.config.artifacts.model.model_log_dir,
+                tag2id_file=self.config.artifacts.data.tag2_file_name,
+                log_file=self.config.logs.log_file,
+                per_device_eval_batch_size=self.params.TrainingArguments.per_device_eval_batch_size,
+                mlflow_url=self.secrect.mlflow.MLFLOW_TRACKING_URI,
+                all_params=self.params.TrainingArguments
+            )
+            return model_evaluation_config
+
+        except Exception as ex:
+            raise ex
+
+
 if __name__ == "__main__":
     pass

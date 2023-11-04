@@ -152,3 +152,36 @@ class ModelTrainingConfig:
     gradient_accumulation_steps: int
     save_total_limit: int
     save_strategy: str
+
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    """
+        Represents the configuration for model evaluation in a machine learning project.
+
+        Attributes:
+            train_tensor_data_path (Path): Path to the training data in tensor format.
+            test_tensor_data_path (Path): Path to the test data in tensor format.
+            valid_tensor_data_path (Path): Path to the validation data in tensor format.
+            model_path (Path): Path to the trained model.
+            tokenizer_path (Path): Path to the tokenizer used for tokenizing the input data.
+            metric_file_path (Path): Path to the file where evaluation metrics will be stored.
+            model_log_dir (Path): Path to the directory where model logs will be stored.
+            tag2id_file (Path): Path to the file containing tag to ID mapping.
+            log_file (Path): Path to the log file.
+            per_device_eval_batch_size (int): Batch size for evaluation on each device.
+            mlflow_url (str): URL for MLflow server.
+            all_params (dict): A dictionary containing all the parameters as key-value pairs.
+    """
+    train_tensor_data_path: Path
+    test_tensor_data_path: Path
+    valid_tensor_data_path: Path
+    model_path: Path
+    tokenizer_path: Path
+    metric_file_path: Path
+    model_log_dir: Path
+    tag2id_file: Path
+    log_file: Path
+    per_device_eval_batch_size: int
+    mlflow_url: str
+    all_params: dict

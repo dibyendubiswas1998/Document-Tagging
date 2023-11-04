@@ -9,8 +9,8 @@ stages:
       size: 944
     - path: config/secrect.yaml
       hash: md5
-      md5: 03d1c38c21d782a09e961e32cea17551
-      size: 568
+      md5: d62a3abb3164d96501289008bbf59803
+      size: 788
     - path: src/document_tagging/pipeline/data_ingestion.py
       hash: md5
       md5: 8c4d6961e5c72a117b158b0e41695ece
@@ -18,8 +18,8 @@ stages:
     outs:
     - path: artifacts/data/data.csv
       hash: md5
-      md5: 61a75903571143235bb1eb91acc39ad0
-      size: 24274
+      md5: 9c0ac98dcf46d535309f53fd3b38d279
+      size: 2442644
   data_preprocessing:
     cmd: python src/document_tagging/pipeline/data_preprocessing.py
     deps:
@@ -89,3 +89,34 @@ stages:
       md5: d751713988987e9331980363e24189ce.dir
       size: 0
       nfiles: 0
+  model_evaluation:
+    cmd: python src/document_tagging/pipeline/model_evaluation.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 6aee7cabf2472115d17d4be1c09a47e2
+      size: 944
+    - path: src/document_tagging/pipeline/model_evaluation.py
+      hash: md5
+      md5: 484ef4568c90760d16b853955d953928
+      size: 2396
+    params:
+      params.yaml:
+        TrainingArguments.eval_steps: 500
+        TrainingArguments.evaluation_strategy: epoch
+        TrainingArguments.gradient_accumulation_steps: 16
+        TrainingArguments.learning_rate: 2e-05
+        TrainingArguments.logging_steps: 10
+        TrainingArguments.num_train_epochs: 7
+        TrainingArguments.per_device_eval_batch_size: 8
+        TrainingArguments.per_device_train_batch_size: 8
+        TrainingArguments.save_steps: 1000000
+        TrainingArguments.save_strategy: no
+        TrainingArguments.save_total_limit: 0
+        TrainingArguments.warmup_steps: 500
+        TrainingArguments.weight_decay: 0.01
+    outs:
+    - path: artifacts/report/performace_report.json
+      hash: md5
+      md5: 4f7be50b30d92cea3b553a0353f50959
+      size: 1119

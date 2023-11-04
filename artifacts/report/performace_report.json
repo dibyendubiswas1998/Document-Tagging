@@ -1,0 +1,32 @@
+{
+    "train_validation_params": {
+        "eval_loss": 4.393768310546875,
+        "eval_precision": 0.05572755417956656,
+        "eval_recall": 0.03308823529411765,
+        "eval_f1": 0.041522491349480974,
+        "eval_accuracy": 0.13636363636363635,
+        "eval_runtime": 14.0382,
+        "eval_samples_per_second": 19.946,
+        "eval_steps_per_second": 2.493
+    },
+    "test_validation_params": {
+        "eval_loss": 5.459343433380127,
+        "eval_precision": 0.03571428571428571,
+        "eval_recall": 0.018518518518518517,
+        "eval_f1": 0.024390243902439025,
+        "eval_accuracy": 0.09090909090909091,
+        "eval_runtime": 3.7743,
+        "eval_samples_per_second": 15.897,
+        "eval_steps_per_second": 2.12
+    },
+    "valid_validation_params": {
+        "eval_loss": 5.459343433380127,
+        "eval_precision": 0.03571428571428571,
+        "eval_recall": 0.018518518518518517,
+        "eval_f1": 0.024390243902439025,
+        "eval_accuracy": 0.09090909090909091,
+        "eval_runtime": 2.9492,
+        "eval_samples_per_second": 20.345,
+        "eval_steps_per_second": 2.713
+    }
+}
