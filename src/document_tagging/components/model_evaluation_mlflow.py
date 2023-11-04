@@ -146,20 +146,20 @@ class ModelEvaluation:
                 compute_metrics=compute_metrics,
             )
 
-            train_result = trainer.evaluate(train_dataset) # evaluate based on training dataset
+            # train_result = trainer.evaluate(train_dataset) # evaluate based on training dataset
             test_result = trainer.evaluate(test_dataset) # evaluate based on test dataset
-            validation_result = trainer.evaluate(vaild_dataset) # evaluate based on vaild dataset
+            # validation_result = trainer.evaluate(vaild_dataset) # evaluate based on vaild dataset
 
             performance_report = {
-                "train_validation_params": train_result,
+                # "train_validation_params": train_result,
                 "test_validation_params": test_result,
-                "valid_validation_params": validation_result
+                # "valid_validation_params": validation_result
             }
 
             save_json_file(file_path=self.config.metric_file_path, report=performance_report) # save the evaluation parameters
-            log(file_object=log_file, log_message=f"evaluate the model based on test and valid dataset and save into {self.config.metric_file_path}") #logs
+            log(file_object=log_file, log_message=f"evaluate the model based on train and test and valid dataset and save into {self.config.metric_file_path}") #logs
             log(file_object=log_file, log_message=f"test result: {test_result}") # logs
-            log(file_object=log_file, log_message=f"valid result: {validation_result}") # logs
+            # log(file_object=log_file, log_message=f"valid result: {validation_result}") # logs
 
         except Exception as ex:
             log_file = self.config.log_file # mention log file
@@ -177,16 +177,16 @@ class ModelEvaluation:
             model = AutoModelForTokenClassification.from_pretrained(self.config.model_path) # load the model
             
             report_file = load_json_file(self.config.metric_file_path) # loads the report.jso file
-            metrics_train = {
-                "train_eval_loss": report_file["train_validation_params"]["eval_loss"],
-                "train_eval_precision": report_file["train_validation_params"]["eval_precision"],
-                "train_eval_recall": report_file["train_validation_params"]["eval_recall"],
-                "train_eval_f1": report_file["train_validation_params"]["eval_f1"],
-                "train_eval_accuracy": report_file["train_validation_params"]["eval_accuracy"],
-                "train_eval_runtime": report_file["train_validation_params"]["eval_runtime"],
-                "train_eval_samples_per_second": report_file["train_validation_params"]["eval_samples_per_second"],
-                "train_eval_steps_per_second": report_file["train_validation_params"]["eval_steps_per_second"]
-            }
+            # metrics_train = {
+            #     "train_eval_loss": report_file["train_validation_params"]["eval_loss"],
+            #     "train_eval_precision": report_file["train_validation_params"]["eval_precision"],
+            #     "train_eval_recall": report_file["train_validation_params"]["eval_recall"],
+            #     "train_eval_f1": report_file["train_validation_params"]["eval_f1"],
+            #     "train_eval_accuracy": report_file["train_validation_params"]["eval_accuracy"],
+            #     "train_eval_runtime": report_file["train_validation_params"]["eval_runtime"],
+            #     "train_eval_samples_per_second": report_file["train_validation_params"]["eval_samples_per_second"],
+            #     "train_eval_steps_per_second": report_file["train_validation_params"]["eval_steps_per_second"]
+            # }
             metrics_test = {
                 "test_eval_loss": report_file["test_validation_params"]["eval_loss"],
                 "test_eval_precision": report_file["test_validation_params"]["eval_precision"],
@@ -197,16 +197,16 @@ class ModelEvaluation:
                 "test_eval_samples_per_second": report_file["test_validation_params"]["eval_samples_per_second"],
                 "test_eval_steps_per_second": report_file["test_validation_params"]["eval_steps_per_second"]
             }
-            metrics_valid = {
-                "valid_eval_loss": report_file["valid_validation_params"]["eval_loss"],
-                "valid_eval_precision": report_file["valid_validation_params"]["eval_precision"],
-                "valid_eval_recall": report_file["valid_validation_params"]["eval_recall"],
-                "valid_eval_f1": report_file["valid_validation_params"]["eval_f1"],
-                "valid_eval_accuracy": report_file["valid_validation_params"]["eval_accuracy"],
-                "valid_eval_runtime": report_file["valid_validation_params"]["eval_runtime"],
-                "valid_eval_samples_per_second": report_file["valid_validation_params"]["eval_samples_per_second"],
-                "valid_eval_steps_per_second": report_file["valid_validation_params"]["eval_steps_per_second"]
-            }
+            # metrics_valid = {
+            #     "valid_eval_loss": report_file["valid_validation_params"]["eval_loss"],
+            #     "valid_eval_precision": report_file["valid_validation_params"]["eval_precision"],
+            #     "valid_eval_recall": report_file["valid_validation_params"]["eval_recall"],
+            #     "valid_eval_f1": report_file["valid_validation_params"]["eval_f1"],
+            #     "valid_eval_accuracy": report_file["valid_validation_params"]["eval_accuracy"],
+            #     "valid_eval_runtime": report_file["valid_validation_params"]["eval_runtime"],
+            #     "valid_eval_samples_per_second": report_file["valid_validation_params"]["eval_samples_per_second"],
+            #     "valid_eval_steps_per_second": report_file["valid_validation_params"]["eval_steps_per_second"]
+            # }
             
             mlflow.set_registry_uri(self.config.mlflow_url)
             mlflow.set_tracking_uri(self.config.mlflow_url)
@@ -214,9 +214,9 @@ class ModelEvaluation:
 
             with mlflow.start_run():
                 mlflow.log_params(self.config.all_params) # logs the TrainingArguments params
-                mlflow.log_metrics(metrics_train) # logs the Metrics based on train_dataset
+                # mlflow.log_metrics(metrics_train) # logs the Metrics based on train_dataset
                 mlflow.log_metrics(metrics_test) # logs the Metrics based on test_dataset
-                mlflow.log_metrics(metrics_valid) # logs the Metrics based on valid_dataset
+                # mlflow.log_metrics(metrics_valid) # logs the Metrics based on valid_dataset
                 
                 # Model registry does not work with file store
                 if tracking_url_type_store != "file":
