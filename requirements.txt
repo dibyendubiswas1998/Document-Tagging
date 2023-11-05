@@ -1,38 +1,24 @@
-# aws:
 boto3
-
-# Data Manipulation libraries:
 numpy
 pandas
 scipy
-
-# ML related  libraries:
 scikit-learn
-
-# NLP libaries:
 nltk
-
-# pytorch:
 torch
-
-# transformers library:
 transformers
 sentencepiece
 transformers[torch]
-
-# Deployment libraries:
 flask
-
-# Others
+Flask
+Flask-Cors
 datasets
 ensure
 accelerate
 seqeval
-
-# dvc:
+ensure
+python-box==6.0.2
 dvc
-
-# mlflow:
 mlflow
-
+pyYAML
+tqdm
 -e.
