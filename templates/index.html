@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
+    <link href="{{url_for('static', filename='css/style.css') }}" rel="stylesheet"/>
+    <title>Document Tagging</title>
+</head>
+<body>
+       <div class="container">
+            <div class="title">
+                Document Tagging
+            </div>
+            <form action="/prediction" method="post">
+                <div class="user-details">
+                    <div class="input-box">
+                        <label for="messages">Enter Text</label>
+                        <textarea name="messages" id="messages" cols="72" rows="2.5"></textarea>
+                    </div>
+                </div>
+                <div class="button">
+                    <button type="submit">Submit</button>
+                </div>
+                <br>
+                <div>
+                    <p>
+                        <span style="font-weight: bold;">Tags: </span>
+                        <ul>
+                            {% for tag in tags %} 
+                            <li>{{tag}}</li>
+                            {% endfor %}
+                        </ul>    
+                    </p>
+                </div>
+            </form>
+    </div>
+</body>
+</html>

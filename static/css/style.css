@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    padding: 10px;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+.container{
+    background-color: aliceblue;
+    max-width: 700px;
+    width: 100%;
+    padding: 25px 30px;
+    border-radius: 5px;
+}
+.container .title{
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+}
+.container .title::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+.container form .user-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.container form .user-details .input-box{
+    margin: 15px 0px 15px 0px;
+    width: calc(100% / 2 - 20px);
+}
+.container form .input-box label{
+    display: block;
+    font-weight: 550;
+    margin-bottom: 5px;
+}
+.container form .input-box textarea{
+	resize: vertical;
+    height: 70px;
+    width: 215%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+.container form .input-box textarea:focus,
+.container form .input-box textarea:valid{
+    border-color: #9b59b6;
+}
+form .button{
+    height: 35px;
+    width: 100px;
+    margin: 10px 0px;
+}
+form .button button{
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    color: #fff;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    border-radius: 5px;
+    cursor: pointer;
+}
+form .button button:hover{
+    background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+}
+ul {
+    padding-top: 5px;
+    padding-left: 20px;
+}
+
+
+
+
+
+@media (max-width: 600px){
+    .container{
+        max-width: 100%;
+    }
+    .container form .user-details .input-box{
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    .container form .user-details{
+        max-height: 300px;
+        overflow-y: scroll;
+    }
+    .user-details::-webkit-scrollbar{
+        width: 0px;
+    }
+    .container form .input-box textarea{
+    	width: 100%;
+    }
+}
