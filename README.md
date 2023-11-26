@@ -4,7 +4,7 @@
 Document-Tagging system that leverages advanced natural language processing (NLP) techniques and transformer based pre-trained models for efficient document categorization. This system aims to automate the process of assigning relevant tags or categories to large volumes of unstructured textual data. Users can upload documents, which undergo preprocessing and are then classified into multiple relevant categories using NLP models. [Download Problem Statement PDF](./documents/problem%20statement.pdf)
 
 Here I build CI-CD pipeline for generating relevant tags based on given textual data.<br>
-[DagsHub](!https://dagshub.com/dibyendubiswas1998/Document-Tagging.mlflow)
+[DagsHub](https://dagshub.com/dibyendubiswas1998/Document-Tagging.mlflow)
 <br><br>
 
 ## Project Documentation:
@@ -27,7 +27,7 @@ Here I build CI-CD pipeline for generating relevant tags based on given textual 
 
 * **Step-03:** Create the model (default: bert-base-uncased), and train the model. After that save the pre-trained model & tokenizer in a particular directory.
 
-* **Step-04:** Evaluate the model baed on test datasets and save the inflormation on [DagsHub](!https://dagshub.com/dibyendubiswas1998/Document-Tagging.mlflow) using mlflow. 
+* **Step-04:** Evaluate the model baed on test datasets and save the inflormation on [DagsHub](https://dagshub.com/dibyendubiswas1998/Document-Tagging.mlflow) using mlflow. 
 
 * **Step-05:** Create a Web Application for generating the tags and host the entier application on AWS.
 <br><br>
@@ -35,7 +35,7 @@ Here I build CI-CD pipeline for generating relevant tags based on given textual 
 
 
 ## Tech Stack:
-![Tech Stack](./documents/word%20files/tech%20stack.png)
+![Tech Stack](./documents/tech%20stack.png)
 <br><br>
 
 
@@ -54,4 +54,4 @@ Here I build CI-CD pipeline for generating relevant tags based on given textual 
 
 
 ## Web Interface:
-![Web Interface](./documents/word%20files/web%20interface.png)
+![Web Interface](./documents/web%20interface.png)
