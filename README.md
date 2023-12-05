@@ -4,7 +4,8 @@
 Document-Tagging system that leverages advanced natural language processing (NLP) techniques and transformer-based pre-trained models for efficient document categorization. This system aims to automatically generate the relevant tags or categories based on large volumes of unstructured textual data. Users can upload documents, which undergo preprocessing and are then classified into multiple relevant categories using NLP models. [Download Problem Statement PDF](./documents/problem%20statement.pdf)
 
 Here I build CI-CD pipeline for generating relevant tags based on given textual data.<br>
-[DagsHub](https://dagshub.com/dibyendubiswas1998/Document-Tagging.mlflow)
+[DagsHub](https://dagshub.com/dibyendubiswas1998/Document-Tagging.mlflow)<br>
+[WebApp](http://65.0.74.77:8080/)
 <br><br>
 
 ## Project Documentation:
