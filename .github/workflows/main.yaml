@@ -1,4 +1,4 @@
-name: CI/CD workflow
+name: workflow
 
 on:
   push:
@@ -24,8 +24,8 @@ jobs:
 
       - name: Run unit tests
         run: echo "Running unit tests"
-  
-  build-and-push-docker-and-aws-image:
+
+  build-and-push-ecr-image:
     name: Continuous Delivery
     needs: integration
     runs-on: ubuntu-latest
@@ -37,18 +37,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y jq unzip
-      
-      - name: Build Docker Image
-        run: |
-          docker build -t dibyendubiswas1998/document_tagging .
-      
-      # - name: Publish Docker Image to Docker Hub
-      #   env:
-      #     DOCKER_HUB_TOKEN: ${{ secrets.DOCKER_ACCESS_KEY }}
-      #   run: |
-      #     echo "$DOCKER_HUB_TOKEN" | docker login -u dibyendubiswas1998 --password-stdin
-      #     docker push dibyendubiswas1998/document_tagging
-      
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -60,7 +48,7 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build, tag, and push image to Amazon AWS ECR
+      - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -74,10 +62,9 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
           
-  
-  continous-deployment-aws:
-    name: Continuous Deployment
-    needs: build-and-push-docker-and-aws-image
+          
+  Continuous-Deployment:
+    needs: build-and-push-ecr-image
     runs-on: self-hosted
     steps:
       - name: Checkout
@@ -93,6 +80,7 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+      
       
       - name: Pull latest images
         run: |
